@@ -19,11 +19,14 @@ class Equipo(models.Model):
     imagen_club = models.TextField(null=True, blank=True)
     correo_electronico = models.EmailField()
     slogan = models.CharField(max_length=150, null=True, blank=True)
-    presidente = models.CharField(max_length=100)
+    nombre_presidente = models.CharField(max_length=100)
     direccion = models.TextField()
     ubicacion = models.TextField()
     telefono = models.CharField(max_length=20)
     creado_en = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        db_table = 'equipos'  # <-- Esto conecta con tu tabla real de PostgreSQL
 
     def __str__(self):
         return self.nombre_club
