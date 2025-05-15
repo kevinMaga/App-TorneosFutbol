@@ -30,3 +30,21 @@ class Equipo(models.Model):
 
     def __str__(self):
         return self.nombre_club
+    
+class Jugador(models.Model):
+    categoria_equipo = models.ForeignKey('CategoriaEquipo', on_delete=models.CASCADE)
+    nombre = models.CharField(max_length=100)
+    apellido = models.CharField(max_length=100)
+    genero = models.CharField(max_length=20)
+    fecha_nacimiento = models.DateField()
+    posicion = models.CharField(max_length=50)
+    cedula_imagen = models.TextField()
+    foto = models.TextField()
+    creado_en = models.DateTimeField(auto_now_add=True)
+
+    def edad(self):
+        from datetime import date
+        return date.today().year - self.fecha_nacimiento.year
+
+    def __str__(self):
+        return f"{self.nombre} {self.apellido}"
